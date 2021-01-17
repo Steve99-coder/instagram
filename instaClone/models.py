@@ -5,7 +5,37 @@ from django.dispatch import receiver
 from cloudinary.models import CloudinaryField
 
 # Create your models here.
-class Image(models.Model):
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    profile_picture = models.ImageField(upload_to='media/', default='default.png')
+    bio = models.TextField(max_length=350, default="My Bio", blank=True)
+    name = models.CharField(blank=True, max_length=150)
+    location = models.CharField(max_length=50, blank=True)
+
+    def __str__(self):
+        return f'{self.user.username} Profile'
+
+    @receiver(post_save, sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            Profile.objects.create(user=instance)
+
+    @receiver(post_save, sender=User)
+    def save_user_profile(sender, instance, **kwargs):
+        instance.profile.save()
+
+    def save_profile(self):
+        self.user
+
+    def delete_profile(self):
+        self.delete()
+
+    @classmethod
+    def search_profile(cls, name):
+        return cls.objects.filter(user__username__icontains=name).all()
+
+
+class Post(models.Model):
     image = models.ImageField(upload_to='posts/')
     name = models.CharField(max_length=250, blank=True)
     caption = models.CharField(max_length=250, blank=True)
@@ -54,33 +84,4 @@ class Comment(models.Model):
 
     class Meta:
         ordering = ["-pk"]
-
-class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_picture = models.ImageField(upload_to='media/', default='default.png')
-    bio = models.TextField(max_length=350, default="My Bio", blank=True)
-    name = models.CharField(blank=True, max_length=150)
-    location = models.CharField(max_length=50, blank=True)
-
-    def __str__(self):
-        return f'{self.user.username} Profile'
-
-    @receiver(post_save, sender=User)
-    def create_user_profile(sender, instance, created, **kwargs):
-        if created:
-            Profile.objects.create(user=instance)
-
-    @receiver(post_save, sender=User)
-    def save_user_profile(sender, instance, **kwargs):
-        instance.profile.save()
-
-    def save_profile(self):
-        self.user
-
-    def delete_profile(self):
-        self.delete()
-
-    @classmethod
-    def search_profile(cls, name):
-        return cls.objects.filter(user__username__icontains=name).all()
 
