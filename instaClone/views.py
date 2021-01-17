@@ -2,6 +2,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from .models import Post, Comment, Profile, Follow
 from .forms import SignUpForm, UpdateForm, UpdateProfileForm, PostForm, CommentForm
+from django.views.generic import RedirectView
+from rest_framework.views import APIView
+from rest_framework import authentication, permissions
 
 # Create your views here.
 @login_required(login_url='login')
@@ -139,3 +142,42 @@ def follow(request, to_follow):
         follow_s = Follow(follower=request.user.profile, followed=user_prof)
         follow_s.save()
         return redirect('user_profile', user_prof.user.username)
+
+
+class PostLikeToggle(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        id = self.kwargs.get('id')
+        print(id)
+        obj = get_object_or_404(Post, pk=id)
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        if user in obj.likes.all():
+            obj.likes.remove(user)
+        else:
+            obj.likes.add(user)
+        return url_
+
+class PostLikeAPIToggle(APIView):
+    authentication_classes = [authentication.SessionAuthentication]
+    permission_classes = [permissions.IsAuthenticated]
+
+    def get(self, request, id=None, format=None):
+       
+        obj = get_object_or_404(Post, pk=id)
+        url_ = obj.get_absolute_url()
+        user = self.request.user
+        updated = False
+        liked = False
+        if user in obj.likes.all():
+            liked = False
+            obj.likes.remove(user)
+        else:
+            liked = True
+            obj.likes.add(user)
+        updated = True
+        data = {
+            'updated': updated,
+            'liked': liked,
+        }
+        print(data)
+        return Response(data)
