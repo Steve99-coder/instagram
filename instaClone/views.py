@@ -1,10 +1,12 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Post, Comment, Profile, Follow
 from .forms import SignUpForm, UpdateForm, UpdateProfileForm, PostForm, CommentForm
 from django.views.generic import RedirectView
 from rest_framework.views import APIView
 from rest_framework import authentication, permissions
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.models import User
 
 # Create your views here.
 @login_required(login_url='login')
