@@ -16,57 +16,92 @@ This is a clone of the website for the Instagram app where users share their  im
 * Follow other users and see their pictures on my timeline.  
 
   
-## Setup and Installation  
- 
-### Clone the repository:  
- ```bash 
- https://github.com/Steve99-coder/instagram.git
+## Setup and installations
+* Fork the data .
+* git clone the gallery repo.
+* Activate a virtual environment on terminal: `source virtual/bin/activate`
+* Install all the requirements found in requirements file.
+* On your terminal run `python3.8 manage.py runserver`
+
+
+
+## Getting started
+
+### Prerequisites
+* python3.6
+* virtual environment
+* pip
+
+#### Clone the Repo 
+```bash
+git clone https://github.com/Steve99-coder/Gallery
 ```
-### Navigate into the folder 
- ```bash 
-cd into insta master
+#### Initialize git and add the remote repository
+```bash
+git init
 ```
-### Install and activate Virtual  
- ```bash 
-- python3 -m venv virtual - source virtual/bin/activate  
-```  
-### Install Dependencies  
- ```bash 
- pip install -r requirements.txt 
-```  
-### Setup your Database  
-  SetUp your database User,Password, Host then make migrate  
- ```bash 
-python manage.py makemigrations
- ``` 
- Now Migrate  
- ```bash 
- python manage.py migrate 
+```bash
+git remote add origin <your-repository-url>
 ```
 
-### Running the application  
- ```bash 
- python manage.py runserver 
+#### Create and activate the virtual environment
+```bash
+python3 -m venv virtual
 ```
-### Testing the application  
- ```bash 
- python manage.py test 
-```
-Open the application on your browser `127.0.0.1:8000`.  
-  
-  
-## Technology used  
-  
-* [Django 3.1.5](https://docs.djangoproject.com/en/2.2/)  
-* [Heroku](https://heroku.com)  
-* [Python3.8.5](https://www.python.org/)  
-* [Bootstrap4](https://getbootstrap.com/)
 
+```bash
+source virtual/bin/activate
+```
+
+#### Setting up environment variables
+Create a `.env` file and paste paste the following filling where appropriate:
+```
+SECRET_KEY='rdtfyguihjohucbdsjnc'
+DEBUG=True
+DB_NAME='gallery'
+DB_USER='<your database name>'
+DB_PASSWORD='<password to your database>'
+DB_HOST='127.0.0.1'
+MODE='dev'
+ALLOWED_HOSTS='.localhost', '.herokuapp.com', '.127.0.0.1'
+DISABLE_COLLECTSTATIC=1
+```
+
+#### Install dependancies
+Install dependancies that will create an environment for the app to run
+`pip install -r requirements.txt`
+
+#### Make and run migrations
+```bash
+python3 manage.py check
+python manage.py makemigrations gallery
+python3 manage.py sqlmigrate gallery 0001
+python3 manage.py migrate
+```
+
+#### Run the app
+```bash
+python3 manage.py runserver
+```
+Open [localhost:8000](http://127.0.0.1:8000/)
+
+
+
+## Testing the Application
+`python manage.py test gallery`
+        
+## Technologies Used
+
+* [Python3.8](https://docs.python.org/3/)
+* Django 
+* Postgresql 
+* Boostrap
+* HTML
 
 ## Contact Information   
 Please email me at stevenderitu99@gmail.com for any question or contributions,
   
 ## License 
 
-MIT <br>
+[MIT](LICENSE.md)  <br>
 Copyright © by Stephen Nderitu 2021
