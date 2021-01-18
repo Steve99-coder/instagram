@@ -4,7 +4,7 @@ Author:[Stephen Nderitu](https://github.com/Steve99-coder)
   
 # Description  
 
-This is a a clone of the website for the Instagram app where users share their  images and ideasfor other users to view them.Users can Sign in to the application,Upload pictures to the application,See their profile with all their pictures.Click [View Site]()
+This is a clone of the website for the Instagram app where users share their  images and ideasfor other users to view them.Users can Sign in to the application,Upload pictures to the application,See their profile with all their pictures.[View Site](https://evening-wildwood-32640.herokuapp.com/)
 
 
 ## User Story  
