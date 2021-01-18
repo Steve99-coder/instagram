@@ -31,7 +31,6 @@ SECRET_KEY = 't#j_2#_#bp&gsmj*g)j3yay^37y)oe$0_)uq82#c-2u3(!c3f7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
@@ -189,3 +188,5 @@ db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
+
+ALLOWED_HOSTS = []
