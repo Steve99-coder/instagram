@@ -1,5 +1,5 @@
 {% load static %} {% block content %}
-<div class="navbar fixed-top bg-white">
+<div class="navbar fixed-top ">
     <nav class="container">
         <span class="navbar-brand mb-0 h1">
         
@@ -16,16 +16,12 @@
             <i class="spinner "></i>
         </form>
         <span class="pull-right">
-            <!-- <div class="instaicon disc"></div>
-            <div class="instaicon like"></div>
-            <a href="{% url 'profile' user.username %}" class="instaicon pers"></a> -->
 
             <div class='contact_icons'>
-                <a class='home' href='/'><i class="fas fa-home"></i></a>
-                <a class='send' href='/'><i class="far fa-paper-plane"></i></a>
-                <a class='explore' href='/'><i class="far fa-compass"></i></a>
-                <a class='likes' href='/'><i class="far fa-heart"></i></a>
+                <a class='profile' href="{% url 'search' %}"><i class="far fas fa-search"></i></a>
                 <a class='profile' href='/'><i class="far fa-user"></i></a>
+                <a class="D-block mx-auto" href="{% url 'logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+
             </div>
         </span>
     </nav>

@@ -7,9 +7,10 @@ from rest_framework.views import APIView
 from rest_framework import authentication, permissions
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect, JsonResponse
 
 # Create your views here.
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def index(request):
     images = Post.objects.all()
     print('loaded images', images)
@@ -26,7 +27,7 @@ def index(request):
     
     return render(request, 'instaClone/index.html', {'images':images, 'form': form, 'users': users})
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def profile(request, username):
     images = request.user.profile.posts.all()
     if request.method == 'POST':
@@ -47,7 +48,7 @@ def profile(request, username):
     }
     return render(request, 'instaClone/profile.html', params)
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def user_profile(request, username):
     user_prof = get_object_or_404(User, username=username)
     if request.user == user_prof:
@@ -70,7 +71,7 @@ def user_profile(request, username):
     print(followers)
     return render(request, 'instaClone/user_profile.html', params)
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def post_comment(request, id):
     image = get_object_or_404(Post, pk=id)
     is_liked = False
@@ -92,7 +93,7 @@ def post_comment(request, id):
         'is_liked': is_liked,
         'total_likes': image.total_likes()
     }
-    return render(request, 'instaClone/single_post.html', params)
+    return render(request, 'instaClone/comment.html', params)
 
 def like_post(request):
    
@@ -111,10 +112,10 @@ def like_post(request):
         'total_likes': image.total_likes()
     }
     if request.is_ajax():
-        html = render_to_string('instaClone/like_section.html', params, request=request)
+        html = render_to_string('instaClone/like.html', params, request=request)
         return JsonResponse({'form': html})
 
-@login_required(login_url='login')
+@login_required(login_url='/accounts/login/')
 def search_profile(request):
     if 'search_user' in request.GET and request.GET['search_user']:
         name = request.GET.get("search_user")
