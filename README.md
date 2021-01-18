@@ -34,7 +34,7 @@ This is a clone of the website for the Instagram app where users share their  im
 
 #### Clone the Repo 
 ```bash
-git clone https://github.com/Steve99-coder/Gallery
+git clone https://github.com/Steve99-coder/instagram
 ```
 #### Initialize git and add the remote repository
 ```bash
@@ -88,7 +88,7 @@ Open [localhost:8000](http://127.0.0.1:8000/)
 
 
 ## Testing the Application
-`python manage.py test gallery`
+`python manage.py test instaClone`
         
 ## Technologies Used
 
