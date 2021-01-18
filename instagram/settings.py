@@ -13,11 +13,12 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 from pathlib import Path
 import django_heroku
 import os
-from decouple import config, Csv
 import dj_database_url
 import cloudinary
 import cloudinary.uploader
 import cloudinary.api
+from decouple import config, Csv
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -46,9 +47,6 @@ INSTALLED_APPS = [
     'instaClone',
     'crispy_forms',
     'bootstrap4',
-
-
-
 
 ]
 
@@ -150,17 +148,7 @@ LOGIN_REDIRECT_URL = 'index'
 
 LOGOUT_REDIRECT_URL = 'login'
 
-cloudinary.config( 
-  cloud_name = "dcbedu044", 
-  api_key = "732844196176288", 
-  api_secret = "v1zrp4y612Lw3ZK_0PcD0GlPMls" 
-)   
-
-
-# Configure Django App for Heroku.
-django_heroku.settings(locals())
-
-
+  
 MODE=config("MODE", default="dev")
 SECRET_KEY = config('SECRET_KEY')
 DEBUG = config('DEBUG', default=False, cast=bool)
@@ -190,4 +178,11 @@ DATABASES['default'].update(db_from_env)
 
 ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())
 
-ALLOWED_HOSTS = []
+cloudinary.config( 
+  cloud_name = "dcbedu044", 
+  api_key = "732844196176288", 
+  api_secret = "v1zrp4y612Lw3ZK_0PcD0GlPMls" 
+) 
+
+# Configure Django App for Heroku.
+django_heroku.settings(locals())

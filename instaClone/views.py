@@ -93,7 +93,7 @@ def post_comment(request, id):
         'is_liked': is_liked,
         'total_likes': image.total_likes()
     }
-    return render(request, 'instaClone/comment.html', params)
+    return render(request, 'instaClone/single_post.html', params)
 
 def like_post(request):
    
