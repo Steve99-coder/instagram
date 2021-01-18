@@ -4,7 +4,7 @@ Author:[Stephen Nderitu](https://github.com/Steve99-coder)
   
 # Description  
 
-This is a clone of the website for the Instagram app where users share their  images and ideasfor other users to view them.Users can Sign in to the application,Upload pictures to the application,See their profile with all their pictures.[View Site](https://evening-wildwood-32640.herokuapp.com/)
+This is a clone of the website for the Instagram app where users share their  images and ideas for other users to view them.Users can Sign in to the application,Upload pictures to the application,See their profile with all their pictures.[View Site](https://evening-wildwood-32640.herokuapp.com/)
 
 
 ## User Story  
@@ -16,27 +16,25 @@ This is a clone of the website for the Instagram app where users share their  im
 * Follow other users and see their pictures on my timeline.  
 
   
-
-  
 ## Setup and Installation  
  
-##### Cloning the repository:  
+### Clone the repository:  
  ```bash 
  https://github.com/Steve99-coder/instagram.git
 ```
-##### Navigate into the folder and install requirements  
+### Navigate into the folder 
  ```bash 
 cd into insta master
 ```
-##### Install and activate Virtual  
+### Install and activate Virtual  
  ```bash 
 - python3 -m venv virtual - source virtual/bin/activate  
 ```  
-##### Install Dependencies  
+### Install Dependencies  
  ```bash 
  pip install -r requirements.txt 
 ```  
- ##### Setup Database  
+### Setup your Database  
   SetUp your database User,Password, Host then make migrate  
  ```bash 
 python manage.py makemigrations
@@ -46,11 +44,11 @@ python manage.py makemigrations
  python manage.py migrate 
 ```
 
-##### Running the application  
+### Running the application  
  ```bash 
  python manage.py runserver 
 ```
-##### Testing the application  
+### Testing the application  
  ```bash 
  python manage.py test 
 ```
